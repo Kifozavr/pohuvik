@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ПОХУВИК — И не такие метели в ебало летели</title>
+<meta name="description" content="Куртка на десять лет с карманом, где твой телефон замолкает. Предзаказ первой партии.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#000;
+  --paper:#F4F4F2;
+  --grey:#6E6E76;
+  --acc:#FA283C;
+  --cyan:#4DE0FF;
+  --line:#1A1A1E;
+  --display:'Oswald','Roboto Condensed',system-ui,sans-serif;
+  --body:'Inter',system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--acc);color:#000}
+.wrap{max-width:1320px;margin:0 auto;padding:0 24px}
+
+/* штриховая кириллица */
+.striped{
+  background-image:repeating-linear-gradient(90deg,#fff 0 3px,rgba(0,0,0,0) 3px 7px);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.striped.acc{background-image:repeating-linear-gradient(90deg,var(--acc) 0 3px,rgba(0,0,0,0) 3px 7px)}
+
+/* зубцы */
+.teeth{display:block;width:100%;height:34px}
+.teeth.up{transform:rotate(180deg)}
+
+/* служебный блок */
+.service{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:430px;
+  font-family:var(--display);text-transform:uppercase;font-size:11px;line-height:1.32;
+  letter-spacing:.02em;color:#55555E}
+
+/* ---------- AGE GATE ---------- */
+#gate{position:fixed;inset:0;background:#000;z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;padding:24px;text-align:center}
+#gate h4{font-family:var(--display);font-size:clamp(26px,6vw,54px);font-weight:700;text-transform:uppercase;line-height:1}
+#gate p{color:var(--grey);font-size:13.5px;max-width:400px;line-height:1.6}
+#gate button{background:var(--acc);color:#000;border:0;padding:17px 42px;font-family:var(--display);font-size:19px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+#gate button:hover{background:#fff}
+
+/* ---------- HERO ---------- */
+#snow{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:26px 0 34px;z-index:2}
+.topbar{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--grey)}
+.mark{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:.06em;line-height:1}
+.by{display:flex;align-items:center;gap:9px;text-decoration:none;color:#55555E;
+  font-family:var(--display);text-transform:lowercase;letter-spacing:.14em;font-size:11px;transition:.25s}
+.by:hover{color:var(--paper)}
+.by img{height:14px;display:block}
+@media(max-width:760px){.season{display:none}}
+
+.slogan{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(46px,12.4vw,206px);line-height:.84;letter-spacing:-.025em;margin:5vh 0}
+.slogan span{display:block;white-space:nowrap}
+.slogan .hit{color:var(--acc)}
+.herofoot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.herofoot p{max-width:400px;font-size:15px;line-height:1.55;color:#9D9DA5}
+
+/* прицел */
+.badge{width:78px;height:78px;flex:0 0 auto;opacity:.75}
+
+/* ---------- СЛОТЫ ---------- */
+.slot{position:relative;overflow:hidden;background:#050506;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;min-height:340px}
+.slot::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 50% 30%,#141419 0%,#000 72%)}
+.slot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:110px;
+  background:linear-gradient(to bottom,rgba(0,0,0,0),#000 78%);
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 3px,rgba(0,0,0,0) 3px 9px);
+  mask:repeating-linear-gradient(90deg,#000 0 3px,rgba(0,0,0,0) 3px 9px)}
+.slot i{position:relative;z-index:2;font-style:normal;font-family:var(--display);text-transform:uppercase;
+  letter-spacing:.22em;font-size:11px;color:#3E3E48;text-align:center;line-height:2.2;padding:20px}
+.slot i b{display:block;color:var(--acc);font-size:15px;letter-spacing:.3em}
+
+/* ---------- СЕКЦИИ ---------- */
+section{position:relative;z-index:2;padding:clamp(76px,11vw,168px) 0;background:#000}
+.kicker{font-family:var(--display);text-transform:uppercase;letter-spacing:.32em;font-size:11px;color:var(--acc);margin-bottom:26px}
+h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(32px,6.2vw,86px);line-height:.94;letter-spacing:-.02em;margin-bottom:34px}
+h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(19px,2.2vw,28px);margin-bottom:12px}
+.lead{font-size:clamp(16px,1.9vw,21px);line-height:1.6;color:#B7B7BE;max-width:62ch}
+p.body{font-size:15.5px;line-height:1.65;color:#8E8E97;max-width:56ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,76px);align-items:center}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.g2,.g3,.g4{display:grid}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* ---------- МАНИФЕСТ ---------- */
+.manifest{font-family:var(--display);font-weight:500;text-transform:uppercase;
+  font-size:clamp(23px,4vw,56px);line-height:1.13;letter-spacing:-.015em;max-width:21ch}
+.manifest .dim{color:#41414A}
+.manifest .hit{color:var(--acc)}
+.manifest .gap{display:block;height:.72em}
+
+/* ---------- ЗАСЛОНКА ---------- */
+.noti{position:relative;height:352px;overflow:hidden;border:1px solid var(--line);background:#050507}
+.noti .card{position:absolute;left:14px;right:14px;background:#0E0E12;border:1px solid #22222A;
+  border-radius:11px;padding:12px 15px;font-size:13px;color:#C8C8D0;display:flex;gap:11px;align-items:center;
+  transition:transform .55s cubic-bezier(.4,0,.2,1),opacity .45s}
+.noti .card u{width:7px;height:7px;border-radius:50%;background:var(--acc);flex:0 0 7px;text-decoration:none;
+  box-shadow:0 0 10px var(--acc)}
+.noti.silent .card{transform:translateX(140%);opacity:0}
+.noti .quiet{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.35em;font-size:14px;color:var(--cyan);
+  opacity:0;transition:opacity .6s .35s;text-shadow:0 0 24px var(--cyan)}
+.noti.silent .quiet{opacity:1}
+.roll{margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.rollbtn{position:relative;width:116px;height:50px;border-radius:25px;border:1px solid #2A2A33;background:#0B0B0E;cursor:pointer;flex:0 0 auto}
+.rollbtn::after{content:"";position:absolute;top:4px;left:4px;width:40px;height:40px;border-radius:50%;
+  background:var(--acc);box-shadow:0 0 22px rgba(250,40,60,.6);
+  transition:transform .45s cubic-bezier(.4,0,.2,1),background .4s,box-shadow .4s}
+.rollbtn.on::after{transform:translateX(66px);background:var(--cyan);box-shadow:0 0 22px rgba(77,224,255,.55)}
+.rolllabel{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:15px;color:var(--acc)}
+.rollbtn.on + .rolllabel{color:var(--cyan)}
+
+/* ---------- ВСПЫШКА ---------- */
+.flashbox{position:relative;overflow:hidden;background:#000;border:1px solid var(--line);
+  min-height:min(70vh,600px);display:flex;align-items:center;justify-content:center;padding:40px 24px}
+.backtext{font-family:var(--display);font-weight:700;text-transform:uppercase;text-align:center;
+  font-size:clamp(24px,5vw,70px);line-height:.94;letter-spacing:-.02em;color:#0B0B0D;transition:color .25s,text-shadow .25s}
+.flashbox.lit .backtext{color:#fff;text-shadow:0 0 30px rgba(255,255,255,.9),0 0 90px rgba(77,224,255,.4)}
+.flashbox .burst{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.flashbox .burst.go{animation:burst .42s ease-out}
+@keyframes burst{0%{opacity:.95}100%{opacity:0}}
+.flashbtn{margin-top:24px;background:transparent;border:1px solid var(--acc);color:var(--acc);
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.2em;font-size:13px;padding:16px 34px;cursor:pointer;transition:.25s}
+.flashbtn:hover{background:var(--acc);color:#000}
+
+/* ---------- ЦИФРЫ ---------- */
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:18px}
+.specs div{background:#000;padding:clamp(20px,3vw,34px)}
+.specs b{display:block;font-family:var(--display);font-size:clamp(38px,5vw,62px);font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--acc)}
+.specs b em{font-style:normal;font-size:.42em;color:var(--paper);margin-left:.12em}
+.specs span{display:block;margin-top:13px;font-size:12.5px;line-height:1.55;color:var(--grey)}
+@media(max-width:860px){.specs{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.specs{grid-template-columns:1fr}}
+
+.rows{border-top:1px solid var(--line);margin-top:52px}
+.row{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:25px 0;border-bottom:1px solid var(--line)}
+.row dt{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:13.5px;color:var(--acc)}
+.row dd{font-size:15px;line-height:1.6;color:#9A9AA2}
+@media(max-width:700px){.row{grid-template-columns:1fr;gap:7px}}
+
+/* ---------- CTA ---------- */
+.cta{background:var(--acc);color:#000}
+.cta .kicker{color:#000;opacity:.6}
+.cta h2{color:#000}
+.cta .lead{color:#1B1000;max-width:50ch}
+.price{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;margin:42px 0 6px}
+.price .now{font-family:var(--display);font-weight:700;font-size:clamp(52px,10.5vw,146px);line-height:.82;letter-spacing:-.035em}
+.price .was{font-family:var(--display);font-size:clamp(19px,3vw,32px);text-decoration:line-through;opacity:.4;padding-bottom:.5em}
+.buy{display:inline-block;margin-top:28px;background:#000;color:var(--acc);font-family:var(--display);font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;font-size:clamp(17px,2.5vw,27px);padding:25px 58px;text-decoration:none;border:2px solid #000;transition:.25s}
+.buy:hover{background:transparent;color:#000}
+.terms{margin-top:22px;font-size:14px;line-height:1.7;color:#2C1B00;max-width:50ch}
+.count{display:flex;gap:clamp(16px,4vw,52px);margin-top:48px;flex-wrap:wrap}
+.count b{font-family:var(--display);font-size:clamp(32px,5.6vw,64px);font-weight:700;line-height:1;display:block}
+.count span{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:11px;opacity:.6}
+
+footer{padding:64px 0 84px;position:relative;z-index:2;background:#000}
+footer .fgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:44px}
+@media(max-width:860px){footer .fgrid{grid-template-columns:1fr}}
+footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h4>Здесь ругаются матом</h4>
+  <p>Сайт содержит нецензурную лексику и предназначен для лиц старше 18 лет. Если вас это смущает — здесь вам будет неуютно.</p>
+  <button onclick="document.getElementById('gate').remove()">Мне есть 18</button>
+</div>
+
+<canvas id="snow"></canvas>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs><pattern id="tooth" width="26" height="34" patternUnits="userSpaceOnUse">
+    <polygon points="0,0 26,0 13,34" fill="#FA283C"/>
+  </pattern></defs>
+</svg>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap topbar">
+    <span class="mark striped">ПОХУВИК</span>
+    <span class="season">Зима 26/27 · Партия 001</span>
+    <a class="by" href="#"><span>by</span><img src="sensesay-logo.svg" alt="sensesay"></a>
+  </div>
+
+  <div class="wrap">
+    <h1 class="slogan">
+      <span>И не такие</span>
+      <span>метели</span>
+      <span class="hit">в ебало</span>
+      <span>летели.</span>
+    </h1>
+  </div>
+
+  <div class="wrap herofoot">
+    <p>Куртка на десять лет. С карманом, в котором телефон замолкает — не потому что его отключили, а потому что ты так решил.</p>
+    <svg class="badge" viewBox="0 0 78 78" fill="none" stroke="#6E6E76" stroke-width="1">
+      <circle cx="39" cy="39" r="28"/><path d="M39 4v70M4 39h70"/>
+      <rect x="33" y="33" width="12" height="12" stroke="#FA283C"/>
+    </svg>
+  </div>
+</header>
+
+<svg class="teeth" viewBox="0 0 1000 34" preserveAspectRatio="none"><rect width="1000" height="34" fill="url(#tooth)"/></svg>
+
+<!-- МАНИФЕСТ -->
+<section>
+  <div class="wrap reveal">
+    <div class="kicker">Манифест</div>
+    <div class="manifest">
+      <span class="dim">Всё дорожает. Интернет отключают. Бензина нет. Курс скачет. Списки растут. Небо серое с октября по май.</span>
+      <span class="gap"></span>
+      Мы не будем это комментировать.
+      <span class="gap"></span>
+      <span class="hit">Мы сшили куртку.</span>
+      <span class="gap"></span>
+      <span class="dim">Она тёплая. Она не рвётся. Её чинят, а не выкидывают. Это всё, что мы можем сделать.</span>
+      <span class="gap"></span>
+      Этого достаточно.
+      <span class="gap"></span>
+      <span class="dim">Метель будет. Метель всегда будет. Вопрос только в том,</span> в чём ты в ней стоишь.
+    </div>
+  </div>
+</section>
+
+<div class="slot" style="min-height:min(92vh,780px);border-left:0;border-right:0"><i><b>КАДР 01</b>Хиро · воротник-труба поднят · чёрный вакуум · 4:5</i></div>
+
+<!-- ЗАСЛОНКА -->
+<section>
+  <div class="wrap reveal">
+    <div class="kicker">Единственная фича</div>
+    <h2>Заслонка</h2>
+    <p class="lead" style="margin-bottom:52px">Термокарман и карман тишины — это не два кармана. Это один карман с клапаном, который сворачивается в рулон. Открыт — ты на связи. Свёрнут — тебя нет.</p>
+
+    <div class="grid2">
+      <div>
+        <div class="noti" id="noti"><div class="quiet">Тишина</div></div>
+        <div class="roll">
+          <div class="rollbtn" id="rollbtn" onclick="toggleRoll()"></div>
+          <span class="rolllabel" id="rolllabel">Клапан открыт</span>
+        </div>
+      </div>
+      <div>
+        <h3>Один жест вместо силы воли</h3>
+        <p class="body">Режим «не беспокоить» ты всё равно смахнёшь. Кусок ткани, свёрнутый в три оборота и защёлкнутый магнитами, — не смахнёшь.</p>
+        <p class="body" style="margin-top:17px">Приложил телефон к клапану — сработала NFC-метка, включился авиарежим. Свернул рулон. Три движения, и следующий час твой.</p>
+        <p class="body" style="margin-top:17px"><strong style="color:var(--paper)">Карман внутри утеплённого пакета</strong> — телефон греется теплом тела и не дохнет на морозе за пятнадцать минут. Никаких батареек: просто правильное место.</p>
+      </div>
+    </div>
+
+    <div class="rows">
+      <dl class="row"><dt>Почему рулон</dt><dd>Экран работает только без щели. Молния и липучка дают зазор по всей длине и роняют экранирование на порядок. Три оборота дают лабиринтный шов — так устроены промышленные Фарадей-мешки.</dd></dl>
+      <dl class="row"><dt>Сколько глушит</dt><dd>35–45 дБ в диапазоне 700 МГц – 6 ГГц. Мы пишем измеренные цифры и выкладываем протокол, а не слово «блокирует». Проверяйте.</dd></dl>
+      <dl class="row"><dt>Видно снаружи</dt><dd>На кромке клапана — красная полоса. Свёрнут — не видно. Открыт — торчит. Ты и все вокруг видите статус.</dd></dl>
+    </div>
+  </div>
+</section>
+
+<div class="g2">
+  <div class="slot" style="min-height:min(58vh,520px)"><i><b>КАДР 05</b>Рука сворачивает роллтоп</i></div>
+  <div class="slot" style="min-height:min(58vh,520px)"><i><b>КАДР 06</b>Открыт · полоса торчит</i></div>
+</div>
+
+<!-- ВСПЫШКА -->
+<section>
+  <div class="wrap reveal">
+    <div class="kicker">Спина</div>
+    <h2>Днём его нет</h2>
+    <p class="lead" style="margin-bottom:40px">Слоган нанесён на спину светоотражающей краской в цвет ткани. При дневном свете — только фактура. В свете фар или вспышки — полотно во всю спину. Карточка на маркетплейсе проходит модерацию. Ночное фото уходит в репост.</p>
+
+    <div class="flashbox" id="flashbox">
+      <div class="burst" id="burst"></div>
+      <div class="backtext">И не такие<br>метели<br>в ебало<br>летели.</div>
+    </div>
+    <button class="flashbtn" onclick="doFlash()">Включить вспышку</button>
+  </div>
+</section>
+
+<div class="g2">
+  <div class="slot" style="min-height:min(68vh,600px)"><i><b>КАДР 04</b>Кокон без человека · пэкшот</i></div>
+  <div class="slot" style="min-height:min(68vh,600px)"><i><b>КАДР 02</b>Спина · вспышка · слоган горит</i></div>
+</div>
+
+<!-- СИЛУЭТ -->
+<section>
+  <div class="wrap reveal">
+    <div class="kicker">Силуэт</div>
+    <h2>Три хода</h2>
+    <div class="rows" style="margin-top:0">
+      <dl class="row"><dt>Кокон</dt><dd>Куртка заметно больше человека. Не оверсайз ради оверсайза: под ней должен помещаться свитер и флиска, а воздух между слоями и есть утеплитель.</dd></dl>
+      <dl class="row"><dt>Воротник-труба</dt><dd>Стоячий воротник 220 мм, держащий форму сам, с капюшоном внутри. Поднят — закрывает лицо до глаз, боковой ветер не проходит. Отвёрнут — ложится на плечи валиком. Читается даже в превью на двести пикселей.</dd></dl>
+      <dl class="row"><dt>Зубчатый подол</dt><dd>Треугольные зубцы 90 мм. Графически — сосульки. Конструктивно — подол не задувается снизу и не липнет мокрой полосой к ногам, зубец стряхивает снег. Самый дерзкий и самый дешёвый ход из трёх.</dd></dl>
+    </div>
+  </div>
+</section>
+
+<div class="g3">
+  <div class="slot"><i><b>КАДР 17</b>Воротник-труба · иней</i></div>
+  <div class="slot"><i><b>КАДР 03</b>Зубчатый подол снизу</i></div>
+  <div class="slot"><i><b>КАДР 18</b>Перегородки в контровом</i></div>
+</div>
+
+<!-- ИНЖЕНЕРИЯ -->
+<section>
+  <div class="wrap reveal">
+    <div class="kicker">Инженерия</div>
+    <h2>Скучные вещи,<br>которые решают всё</h2>
+
+    <div class="specs">
+      <div><b>−40</b><span>Комфорт при движении. −25 в покое. Честно, с оговоркой на то, что все мёрзнут по-разному</span></div>
+      <div><b>1,5<em>кг</em></b><span>Размер M. Гибридный пакет: пух там, где сухо, синтетика там, где мокро</span></div>
+      <div><b>120<em>мм</em></b><span>Камеры перегородок. Стёжка не насквозь — значит, нет мостика холода по каждому шву</span></div>
+      <div><b>10<em>лет</em></b><span>Гарантия. На бирке прописью: пока не кончится метель</span></div>
+    </div>
+
+    <div class="rows">
+      <dl class="row"><dt>Утеплитель</dt><dd>Пух 700 FP в корпусе. Синтетика в плечах, воротнике, рукавах и зубцах — там, где снег тает и ткань трётся. Мокрый пух греет на ноль. Кто говорит, что пух хорош везде, вам не куртку продаёт.</dd></dl>
+      <dl class="row"><dt>Стёжка</dt><dd>Перегородками, а не насквозь. Дороже в пошиве на два часа. Ровно этим настоящая зимняя вещь отличается от того, что висит в торговом центре.</dd></dl>
+      <dl class="row"><dt>Верх</dt><dd>Глянцевый рипстоп 70D с мокрым блеском, мембрана 8000/5000, пропитка без ПФАС. Мембрана нужна не для −30, а для −2 с мокрым снегом. Таких дней в году больше.</dd></dl>
+      <dl class="row"><dt>Фурнитура</dt><dd>Молнии крупного тракта с паракордовыми темляками — берутся рукавицей. Центральная двухзамковая: расстёгивается снизу, когда сидишь. Планка на магнитах: кнопку в мороз рукавицей не застегнуть.</dd></dl>
+      <dl class="row"><dt>Кулиска</dt><dd>Выведена в боковые карманы. Затягиваешь подол, не расстёгивая куртку и не снимая рукавиц.</dd></dl>
+      <dl class="row"><dt>Ремонт</dt><dd>Всё заменяемое. В коробке ремкомплект. По внутреннему шву припуск 30 мм — вещь можно перешить. Номер изделия на бирке, история ремонтов привязана к номеру.</dd></dl>
+    </div>
+  </div>
+</section>
+
+<div class="g2">
+  <div class="slot" style="min-height:min(66vh,580px)"><i><b>КАДР 09</b>Панелька · неон · метель</i></div>
+  <div class="slot" style="min-height:min(66vh,580px)"><i><b>КАДР 10</b>Промзона · пар и лёд</i></div>
+</div>
+
+<!-- ПОДКЛАДКА -->
+<section>
+  <div class="wrap grid2 reveal">
+    <div>
+      <div class="kicker">Подкладка</div>
+      <h2>Тихо снаружи.<br>Орёт внутри.</h2>
+      <p class="body">Мокрый чёрный на улице. Фирменный красный под ним и между зубцами. Слоган на спине подкладки — там, где его видишь только ты и только когда снимаешь.</p>
+      <p class="body" style="margin-top:17px">Это не про то, чтобы кого-то задеть. Это про то, чтобы знать самому.</p>
+      <div class="service" style="margin-top:42px">
+        <span>Партия 001 · 500 штук · отгрузка 15 ноября 2026 · гарантия десять лет с даты покупки · ремонт по номеру изделия</span>
+        <span>Заявления по температуре и экранированию подтверждены протоколами испытаний · экранирование указано в децибелах, а не словом «блокирует»</span>
+      </div>
+    </div>
+    <div class="slot" style="min-height:min(70vh,560px)"><i><b>КАДР 19</b>Вывернутая · красная подкладка</i></div>
+  </div>
+</section>
+
+<div class="g4">
+  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 13</b>Остановка · −35</i></div>
+  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 12</b>Заправка ночью</i></div>
+  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 11</b>Подземный переход</i></div>
+  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 14</b>Поле · фары</i></div>
+</div>
+
+<svg class="teeth up" viewBox="0 0 1000 34" preserveAspectRatio="none"><rect width="1000" height="34" fill="url(#tooth)"/></svg>
+
+<!-- CTA -->
+<section class="cta" id="preorder">
+  <div class="wrap">
+    <div class="kicker">Предзаказ</div>
+    <h2>Успей до метели</h2>
+    <p class="lead">Партия 001 — 500 штук. Предзаказ закрывает закупку ткани, поэтому он дешевле розницы на восемь тысяч. Отгрузка 15 ноября — до первых настоящих холодов.</p>
+
+    <div class="price">
+      <span class="now">28 900 ₽</span>
+      <span class="was">36 900 ₽</span>
+    </div>
+
+    <a class="buy" href="#">Забрать до зимы</a>
+
+    <p class="terms">Дальше — розница 36 900 и ждёшь следующей зимы. Мы не будем допечатывать партию до весны: сколько ткани закупили, столько и сошьём.</p>
+
+    <div class="count">
+      <div><b id="d">—</b><span>дней до 1 декабря</span></div>
+      <div><b id="h">—</b><span>часов</span></div>
+      <div><b id="m">—</b><span>минут</span></div>
+      <div><b>500</b><span>штук в партии</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <div class="mark striped" style="font-size:34px;margin-bottom:20px">ПОХУВИК</div>
+      <p>Телефон в экранирующем кармане начинает искать сеть на повышенной мощности и разряжается быстрее. Поэтому в клапан вшита NFC-метка: приложите телефон и включите авиарежим прежде, чем свернуть рулон. Полной блокировки сигнала не бывает, и тот, кто её обещает, вас обманывает.</p>
+    </div>
+    <div>
+      <p>18+. Сайт содержит нецензурную лексику.</p>
+      <p style="margin-top:15px">POHUVIK™ · ПХВК™<br>Отгрузка партии 001 — 15 ноября 2026<br>Гарантия 10 лет с даты покупки</p>
+      <p style="margin-top:15px;color:var(--acc)">И не такие метели в ебало летели.</p>
+      <a class="by" href="#" style="margin-top:22px"><span>by</span><img src="sensesay-logo.svg" alt="sensesay"></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* СНЕГ */
+(function(){
+  const c=document.getElementById('snow'),x=c.getContext('2d');let w,h,f=[];
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight;}
+  size();addEventListener('resize',size);
+  for(let i=0;i<200;i++)f.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,s:Math.random()*3+2});
+  (function loop(){
+    x.clearRect(0,0,w,h);
+    for(const p of f){
+      x.fillStyle= p.r>1.7 ? '#4DE0FF' : '#fff';
+      x.globalAlpha=.1+p.r/4;
+      x.fillRect(p.x,p.y,p.r*3.4,p.r*.7);
+      p.x-=p.s*2.6;p.y+=p.s*.4;
+      if(p.x<-20){p.x=w+20;p.y=Math.random()*h;}
+      if(p.y>h){p.y=-10;p.x=Math.random()*w;}
+    }
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* УВЕДОМЛЕНИЯ */
+const MSG=['Тарифы на связь вырастут с 1 сентября','АИ-95 подорожал четвёртую неделю подряд',
+'Мобильный интернет ограничен в вашем районе','У вас 47 непрочитанных сообщений','Курс ЦБ обновлён',
+'Приложение недоступно в вашем регионе','Платёж не прошёл. Попробуйте другой способ',
+'Обновите приложение. Обновление недоступно','Ваш рейс задержан на неопределённый срок','Кто-то упомянул вас в комментариях'];
+const noti=document.getElementById('noti');
+MSG.forEach((t,i)=>{const d=document.createElement('div');d.className='card';
+  d.style.top=(13+i*34)+'px';d.style.transitionDelay=(i*45)+'ms';
+  d.innerHTML='<u></u>'+t;noti.appendChild(d);});
+let rolled=false;
+function toggleRoll(){rolled=!rolled;
+  noti.classList.toggle('silent',rolled);
+  document.getElementById('rollbtn').classList.toggle('on',rolled);
+  document.getElementById('rolllabel').textContent=rolled?'Клапан свёрнут':'Клапан открыт';}
+
+/* ВСПЫШКА */
+function doFlash(){const b=document.getElementById('burst'),f=document.getElementById('flashbox');
+  b.classList.remove('go');void b.offsetWidth;b.classList.add('go');f.classList.add('lit');
+  clearTimeout(window._ft);window._ft=setTimeout(()=>f.classList.remove('lit'),2600);}
+
+/* ОТСЧЁТ */
+(function(){const t=new Date(new Date().getFullYear(),11,1,0,0,0);
+  if(t<new Date())t.setFullYear(t.getFullYear()+1);
+  function tick(){const s=Math.max(0,(t-new Date())/1000);
+    d.textContent=Math.floor(s/86400);h.textContent=Math.floor(s%86400/3600);m.textContent=Math.floor(s%3600/60);}
+  tick();setInterval(tick,30000);})();
+
+/* ПОЯВЛЕНИЕ */
+const io=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
