@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<script>document.documentElement.className='js'</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ПОХУВИК — И не такие метели в ебало летели</title>
-<meta name="description" content="Куртка на десять лет с карманом, где твой телефон замолкает. Предзаказ первой партии.">
+<meta name="description" content="Пуховик в пол с карманом, где твой телефон замолкает. Предзаказ партии 001.">
+<meta property="og:title" content="ПОХУВИК — И не такие метели в ебало летели">
+<meta property="og:description" content="Пуховик в пол. Свёрнутый клапан на груди — красная полоса: тебя нет. Предзаказ партии 001.">
+<meta property="og:image" content="img/01-hero.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Crect x='4' y='13' width='24' height='6' fill='%23FA283C'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -33,9 +40,9 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
 }
 .striped.acc{background-image:repeating-linear-gradient(90deg,var(--acc) 0 3px,rgba(0,0,0,0) 3px 7px)}
 
-/* зубцы */
-.teeth{display:block;width:100%;height:34px}
-.teeth.up{transform:rotate(180deg)}
+/* красная нить — единственный крик снаружи */
+.teeth{display:block;width:100%;height:3px;background:var(--acc)}
+.teeth.up{background:var(--acc)}
 
 /* служебный блок */
 .service{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:430px;
@@ -61,7 +68,7 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
 @media(max-width:760px){.season{display:none}}
 
 .slogan{font-family:var(--display);font-weight:700;text-transform:uppercase;
-  font-size:clamp(46px,12.4vw,206px);line-height:.84;letter-spacing:-.025em;margin:5vh 0}
+  font-size:clamp(44px,11.4vw,178px);line-height:.86;letter-spacing:-.028em;margin:4vh 0}
 .slogan span{display:block;white-space:nowrap}
 .slogan .hit{color:var(--acc)}
 .herofoot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
@@ -79,17 +86,18 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
   background:linear-gradient(to bottom,rgba(0,0,0,0),#000 78%);
   -webkit-mask:repeating-linear-gradient(90deg,#000 0 3px,rgba(0,0,0,0) 3px 9px);
   mask:repeating-linear-gradient(90deg,#000 0 3px,rgba(0,0,0,0) 3px 9px)}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3;display:block}
 .slot i{position:relative;z-index:2;font-style:normal;font-family:var(--display);text-transform:uppercase;
   letter-spacing:.22em;font-size:11px;color:#3E3E48;text-align:center;line-height:2.2;padding:20px}
 .slot i b{display:block;color:var(--acc);font-size:15px;letter-spacing:.3em}
 
 /* ---------- СЕКЦИИ ---------- */
-section{position:relative;z-index:2;padding:clamp(76px,11vw,168px) 0;background:#000}
-.kicker{font-family:var(--display);text-transform:uppercase;letter-spacing:.32em;font-size:11px;color:var(--acc);margin-bottom:26px}
-h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(32px,6.2vw,86px);line-height:.94;letter-spacing:-.02em;margin-bottom:34px}
-h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(19px,2.2vw,28px);margin-bottom:12px}
-.lead{font-size:clamp(16px,1.9vw,21px);line-height:1.6;color:#B7B7BE;max-width:62ch}
-p.body{font-size:15.5px;line-height:1.65;color:#8E8E97;max-width:56ch}
+section{position:relative;z-index:2;padding:clamp(62px,8vw,118px) 0;background:#000}
+.kicker{font-family:var(--display);text-transform:uppercase;letter-spacing:.34em;font-size:10px;color:var(--acc);margin-bottom:18px}
+h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(30px,5vw,68px);line-height:.94;letter-spacing:-.022em;margin-bottom:26px}
+h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(18px,2vw,25px);margin-bottom:10px}
+.lead{font-size:clamp(15px,1.6vw,19px);line-height:1.55;color:#A8A8B0;max-width:54ch}
+p.body{font-size:14.5px;line-height:1.6;color:#83838C;max-width:52ch}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,76px);align-items:center}
 @media(max-width:860px){.grid2{grid-template-columns:1fr}}
 .g2,.g3,.g4{display:grid}
@@ -99,12 +107,28 @@ p.body{font-size:15.5px;line-height:1.65;color:#8E8E97;max-width:56ch}
 @media(max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
 
-/* ---------- МАНИФЕСТ ---------- */
-.manifest{font-family:var(--display);font-weight:500;text-transform:uppercase;
-  font-size:clamp(23px,4vw,56px);line-height:1.13;letter-spacing:-.015em;max-width:21ch}
-.manifest .dim{color:#41414A}
-.manifest .hit{color:var(--acc)}
-.manifest .gap{display:block;height:.72em}
+/* ---------- МАНИФЕСТ · МЕТЕЛЬ ---------- */
+.manifest{position:relative;padding-left:clamp(34px,5vw,72px)}
+.manifest .ln{
+  display:block;position:relative;
+  font-family:var(--display);font-weight:500;text-transform:uppercase;
+  font-size:clamp(20px,3.3vw,46px);line-height:1.06;letter-spacing:-.015em;
+  color:#3A3A43;
+  white-space:nowrap;
+  will-change:transform;
+}
+.manifest .ln::before{
+  content:attr(data-n);position:absolute;left:calc(-1 * clamp(34px,5vw,72px));top:.42em;
+  font-family:var(--body);font-size:9px;letter-spacing:.18em;color:#22222A;font-weight:500;
+}
+.manifest .ln.on{color:var(--paper)}
+.manifest .ln.acc{color:var(--acc)}
+.manifest .sp{display:block;height:.55em}
+@media(max-width:700px){.manifest .ln{white-space:normal}}
+
+/* иней поверх всего */
+.grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.055;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
 
 /* ---------- ЗАСЛОНКА ---------- */
 .noti{position:relative;height:352px;overflow:hidden;border:1px solid var(--line);background:#050507}
@@ -143,41 +167,45 @@ p.body{font-size:15.5px;line-height:1.65;color:#8E8E97;max-width:56ch}
 /* ---------- ЦИФРЫ ---------- */
 .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:18px}
 .specs div{background:#000;padding:clamp(20px,3vw,34px)}
-.specs b{display:block;font-family:var(--display);font-size:clamp(38px,5vw,62px);font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--acc)}
-.specs b em{font-style:normal;font-size:.42em;color:var(--paper);margin-left:.12em}
-.specs span{display:block;margin-top:13px;font-size:12.5px;line-height:1.55;color:var(--grey)}
+.specs b{display:block;font-family:var(--display);font-size:clamp(34px,4.4vw,54px);font-weight:700;line-height:1;letter-spacing:-.03em;color:var(--paper)}
+.specs b em{font-style:normal;font-size:.4em;color:var(--acc);margin-left:.14em}
+.specs span{display:block;margin-top:11px;font-size:12px;line-height:1.5;color:#5E5E68}
 @media(max-width:860px){.specs{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.specs{grid-template-columns:1fr}}
 
-.rows{border-top:1px solid var(--line);margin-top:52px}
-.row{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:25px 0;border-bottom:1px solid var(--line)}
-.row dt{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:13.5px;color:var(--acc)}
-.row dd{font-size:15px;line-height:1.6;color:#9A9AA2}
+.rows{border-top:1px solid var(--line);margin-top:38px}
+.row{display:grid;grid-template-columns:170px 1fr;gap:26px;padding:17px 0;border-bottom:1px solid var(--line)}
+.row dt{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;color:#6E6E78}
+.row:hover dt{color:var(--acc)}
+.row dd{font-size:14.5px;line-height:1.55;color:#9095A0;max-width:74ch}
 @media(max-width:700px){.row{grid-template-columns:1fr;gap:7px}}
 
-/* ---------- CTA ---------- */
-.cta{background:var(--acc);color:#000}
-.cta .kicker{color:#000;opacity:.6}
-.cta h2{color:#000}
-.cta .lead{color:#1B1000;max-width:50ch}
-.price{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;margin:42px 0 6px}
-.price .now{font-family:var(--display);font-weight:700;font-size:clamp(52px,10.5vw,146px);line-height:.82;letter-spacing:-.035em}
-.price .was{font-family:var(--display);font-size:clamp(19px,3vw,32px);text-decoration:line-through;opacity:.4;padding-bottom:.5em}
-.buy{display:inline-block;margin-top:28px;background:#000;color:var(--acc);font-family:var(--display);font-weight:600;
-  text-transform:uppercase;letter-spacing:.1em;font-size:clamp(17px,2.5vw,27px);padding:25px 58px;text-decoration:none;border:2px solid #000;transition:.25s}
-.buy:hover{background:transparent;color:#000}
-.terms{margin-top:22px;font-size:14px;line-height:1.7;color:#2C1B00;max-width:50ch}
-.count{display:flex;gap:clamp(16px,4vw,52px);margin-top:48px;flex-wrap:wrap}
-.count b{font-family:var(--display);font-size:clamp(32px,5.6vw,64px);font-weight:700;line-height:1;display:block}
-.count span{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:11px;opacity:.6}
+/* ---------- CTA · тихо снаружи ---------- */
+.cta{background:#000;border-top:1px solid var(--line)}
+.price{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin:36px 0 4px}
+.price .now{font-family:var(--display);font-weight:700;font-size:clamp(48px,9vw,124px);line-height:.82;letter-spacing:-.035em;color:var(--paper)}
+.price .was{font-family:var(--display);font-size:clamp(18px,2.6vw,28px);text-decoration:line-through;color:#43434C;padding-bottom:.55em}
+.buy{display:inline-flex;align-items:center;gap:16px;margin-top:26px;background:transparent;color:var(--paper);
+  font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.14em;
+  font-size:clamp(15px,1.8vw,20px);padding:22px 0;text-decoration:none;border:0;border-top:1px solid #2A2A33;border-bottom:1px solid #2A2A33;transition:.3s;position:relative}
+.buy::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--acc);transition:width .45s cubic-bezier(.4,0,.2,1)}
+.buy:hover::before{width:100%}
+.buy em{font-style:normal;color:var(--acc);font-size:.8em;letter-spacing:.2em}
+.terms{margin-top:20px;font-size:13px;line-height:1.7;color:#55555E;max-width:48ch}
+.count{display:flex;gap:clamp(14px,3.4vw,44px);margin-top:44px;flex-wrap:wrap;
+  border-top:1px solid var(--line);padding-top:26px}
+.count b{font-family:var(--display);font-size:clamp(26px,4.4vw,48px);font-weight:700;line-height:1;display:block;color:var(--paper)}
+.count span{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:10px;color:#4E4E57}
 
 footer{padding:64px 0 84px;position:relative;z-index:2;background:#000}
 footer .fgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:44px}
 @media(max-width:860px){footer .fgrid{grid-template-columns:1fr}}
 footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
 
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s}
-.reveal.in{opacity:1;transform:none}
+/* контент виден всегда. анимация появления включается только если JS жив */
+.reveal{opacity:1;transform:none}
+html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s}
+html.js .reveal.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
@@ -189,12 +217,7 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
 </div>
 
 <canvas id="snow"></canvas>
-
-<svg width="0" height="0" style="position:absolute">
-  <defs><pattern id="tooth" width="26" height="34" patternUnits="userSpaceOnUse">
-    <polygon points="0,0 26,0 13,34" fill="#FA283C"/>
-  </pattern></defs>
-</svg>
+<div class="grain"></div>
 
 <!-- HERO -->
 <header class="hero">
@@ -214,7 +237,7 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
   </div>
 
   <div class="wrap herofoot">
-    <p>Куртка на десять лет. С карманом, в котором телефон замолкает — не потому что его отключили, а потому что ты так решил.</p>
+    <p>Пуховик в пол. С карманом, в котором телефон замолкает — не потому что его отключили, а потому что ты так решил.</p>
     <svg class="badge" viewBox="0 0 78 78" fill="none" stroke="#6E6E76" stroke-width="1">
       <circle cx="39" cy="39" r="28"/><path d="M39 4v70M4 39h70"/>
       <rect x="33" y="33" width="12" height="12" stroke="#FA283C"/>
@@ -222,36 +245,46 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
   </div>
 </header>
 
-<svg class="teeth" viewBox="0 0 1000 34" preserveAspectRatio="none"><rect width="1000" height="34" fill="url(#tooth)"/></svg>
+<div class="teeth"></div>
 
 <!-- МАНИФЕСТ -->
 <section>
   <div class="wrap reveal">
     <div class="kicker">Манифест</div>
-    <div class="manifest">
-      <span class="dim">Всё дорожает. Интернет отключают. Бензина нет. Курс скачет. Списки растут. Небо серое с октября по май.</span>
-      <span class="gap"></span>
-      Мы не будем это комментировать.
-      <span class="gap"></span>
-      <span class="hit">Мы сшили куртку.</span>
-      <span class="gap"></span>
-      <span class="dim">Она тёплая. Она не рвётся. Её чинят, а не выкидывают. Это всё, что мы можем сделать.</span>
-      <span class="gap"></span>
-      Этого достаточно.
-      <span class="gap"></span>
-      <span class="dim">Метель будет. Метель всегда будет. Вопрос только в том,</span> в чём ты в ней стоишь.
+    <div class="manifest" id="manifest">
+      <span class="ln" data-n="01" data-d="-1.0">Всё дорожает.</span>
+      <span class="ln" data-n="02" data-d="-1.6">Интернет отключают.</span>
+      <span class="ln" data-n="03" data-d="-2.3">Бензина нет.</span>
+      <span class="ln" data-n="04" data-d="-1.4">Курс скачет.</span>
+      <span class="ln" data-n="05" data-d="-2.8">Небо серое с октября по май.</span>
+      <span class="sp"></span>
+      <span class="ln on" data-n="06" data-d="-0.5">Мы не будем это комментировать.</span>
+      <span class="sp"></span>
+      <span class="ln acc" data-n="07" data-d="-0.2">Мы сшили куртку.</span>
+      <span class="sp"></span>
+      <span class="ln" data-n="08" data-d="-1.8">Она тёплая.</span>
+      <span class="ln" data-n="09" data-d="-2.4">Она не рвётся.</span>
+      <span class="ln" data-n="10" data-d="-1.5">Её чинят, а не выкидывают.</span>
+      <span class="ln" data-n="11" data-d="-2.1">Это всё, что мы можем сделать.</span>
+      <span class="sp"></span>
+      <span class="ln on" data-n="12" data-d="-0.4">Этого достаточно.</span>
+      <span class="sp"></span>
+      <span class="ln" data-n="13" data-d="-2.6">Метель будет.</span>
+      <span class="ln" data-n="14" data-d="-3.2">Метель всегда будет.</span>
+      <span class="ln on" data-n="15" data-d="-0.7">Вопрос только в том, в чём ты в ней стоишь.</span>
     </div>
   </div>
 </section>
 
-<div class="slot" style="min-height:min(92vh,780px);border-left:0;border-right:0"><i><b>КАДР 01</b>Хиро · воротник-труба поднят · чёрный вакуум · 4:5</i></div>
+<div class="slot" style="min-height:min(92vh,780px);border-left:0;border-right:0"><img src="img/01-hero.jpg" alt="Похувик — воротник поднят до глаз" onerror="this.remove()"><i><b>КАДР 01</b>Хиро · воротник-маска до глаз · 4:5</i></div>
 
 <!-- ЗАСЛОНКА -->
 <section>
   <div class="wrap reveal">
     <div class="kicker">Единственная фича</div>
     <h2>Заслонка</h2>
-    <p class="lead" style="margin-bottom:52px">Термокарман и карман тишины — это не два кармана. Это один карман с клапаном, который сворачивается в рулон. Открыт — ты на связи. Свёрнут — тебя нет.</p>
+    <p class="lead" style="margin-bottom:52px">Термокарман и карман тишины — это не два кармана. Это один карман с клапаном, который сворачивается в рулон. И он снаружи, на груди. Не спрятан — выставлен.</p>
+    <p class="lead" style="margin-bottom:52px"><strong style="color:var(--acc)">Свёрнут — через всю грудь идёт красная полоса. Ты вне зоны, и это видно всем.</strong> Открыт — клапан висит чёрным, ты на связи.</p>
 
     <div class="grid2">
       <div>
@@ -265,21 +298,25 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
         <h3>Один жест вместо силы воли</h3>
         <p class="body">Режим «не беспокоить» ты всё равно смахнёшь. Кусок ткани, свёрнутый в три оборота и защёлкнутый магнитами, — не смахнёшь.</p>
         <p class="body" style="margin-top:17px">Приложил телефон к клапану — сработала NFC-метка, включился авиарежим. Свернул рулон. Три движения, и следующий час твой.</p>
-        <p class="body" style="margin-top:17px"><strong style="color:var(--paper)">Карман внутри утеплённого пакета</strong> — телефон греется теплом тела и не дохнет на морозе за пятнадцать минут. Никаких батареек: просто правильное место.</p>
+        <p class="body" style="margin-top:17px"><strong style="color:var(--paper)">Смысл не в том, чтобы телефон полежал в тишине.</strong> Смысл в том, чтобы окружающие видели, что ты недоступен, и не спрашивали почему.</p>
+        <p class="body" style="margin-top:17px">Обычно яркое означает «я здесь». У нас наоборот: заметное состояние — это состояние «меня нет». Красная полоса на груди работает как пломба.</p>
       </div>
     </div>
 
     <div class="rows">
       <dl class="row"><dt>Почему рулон</dt><dd>Экран работает только без щели. Молния и липучка дают зазор по всей длине и роняют экранирование на порядок. Три оборота дают лабиринтный шов — так устроены промышленные Фарадей-мешки.</dd></dl>
       <dl class="row"><dt>Сколько глушит</dt><dd>35–45 дБ в диапазоне 700 МГц – 6 ГГц. Мы пишем измеренные цифры и выкладываем протокол, а не слово «блокирует». Проверяйте.</dd></dl>
-      <dl class="row"><dt>Видно снаружи</dt><dd>На кромке клапана — красная полоса. Свёрнут — не видно. Открыт — торчит. Ты и все вокруг видите статус.</dd></dl>
+      <dl class="row"><dt>Видно снаружи</dt><dd>Клапан сворачивается наружу и в скатке выворачивает красную изнанку. Свёрнут — красная полоса через всю грудь. Открыт — чёрный. Статус читается за пятьдесят метров.</dd></dl>
+      <dl class="row"><dt>Честно о тепле</dt><dd>Наружный карман греет телефон хуже внутреннего, и мы это не прячем. От улицы телефон закрыт утеплителем и экраном, от тела — тонкой стенкой. В −30 на ходу остаётся выше нуля. Два часа неподвижно — выключится, как и любой другой. Мы продаём видимость статуса и платим за неё градусами.</dd></dl>
     </div>
   </div>
 </section>
 
-<div class="g2">
-  <div class="slot" style="min-height:min(58vh,520px)"><i><b>КАДР 05</b>Рука сворачивает роллтоп</i></div>
-  <div class="slot" style="min-height:min(58vh,520px)"><i><b>КАДР 06</b>Открыт · полоса торчит</i></div>
+<div class="g4">
+  <div class="slot" style="min-height:min(58vh,520px)"><img src="img/05-roll.jpg" alt="Рука сворачивает клапан Заслонки" onerror="this.remove()"><i><b>КАДР 05</b>Рука сворачивает роллтоп</i></div>
+  <div class="slot" style="min-height:min(58vh,520px)"><img src="img/06-open.jpg" alt="Заслонка открыта" onerror="this.remove()"><i><b>КАДР 06</b>Клапан открыт · чёрный</i></div>
+  <div class="slot" style="min-height:min(58vh,520px)"><img src="img/07-nfc.jpg" alt="Телефон у NFC-метки на клапане" onerror="this.remove()"><i><b>КАДР 07</b>Жест NFC · авиарежим</i></div>
+  <div class="slot" style="min-height:min(58vh,520px)"><img src="img/08-cutaway.jpg" alt="Три слоя: глянцевый верх, пух, экранирующая сетка" onerror="this.remove()"><i><b>КАДР 08</b>Три слоя · верх, пух, экран</i></div>
 </div>
 
 <!-- ВСПЫШКА -->
@@ -298,27 +335,30 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
 </section>
 
 <div class="g2">
-  <div class="slot" style="min-height:min(68vh,600px)"><i><b>КАДР 04</b>Кокон без человека · пэкшот</i></div>
-  <div class="slot" style="min-height:min(68vh,600px)"><i><b>КАДР 02</b>Спина · вспышка · слоган горит</i></div>
+  <div class="slot" style="min-height:min(68vh,600px)"><img src="img/04-packshot.jpg" alt="Похувик без человека" onerror="this.remove()"><i><b>КАДР 04</b>Мастер · пэкшот в вакууме</i></div>
+  <div class="slot" style="min-height:min(68vh,600px)"><img src="img/02-back-flash.jpg" alt="Слоган на спине в свете вспышки" onerror="this.remove()"><i><b>КАДР 02</b>Спина · вспышка · слоган горит</i></div>
 </div>
 
 <!-- СИЛУЭТ -->
 <section>
   <div class="wrap reveal">
     <div class="kicker">Силуэт</div>
-    <h2>Три хода</h2>
+    <h2>Колонна</h2>
+    <p class="lead" style="margin-bottom:44px">Пуховик длиной в пол с японским контуром. Не косплей и не этника — приёмы взяты за то, что они работают.</p>
     <div class="rows" style="margin-top:0">
-      <dl class="row"><dt>Кокон</dt><dd>Куртка заметно больше человека. Не оверсайз ради оверсайза: под ней должен помещаться свитер и флиска, а воздух между слоями и есть утеплитель.</dd></dl>
-      <dl class="row"><dt>Воротник-труба</dt><dd>Стоячий воротник 220 мм, держащий форму сам, с капюшоном внутри. Поднят — закрывает лицо до глаз, боковой ветер не проходит. Отвёрнут — ложится на плечи валиком. Читается даже в превью на двести пикселей.</dd></dl>
-      <dl class="row"><dt>Зубчатый подол</dt><dd>Треугольные зубцы 90 мм. Графически — сосульки. Конструктивно — подол не задувается снизу и не липнет мокрой полосой к ногам, зубец стряхивает снег. Самый дерзкий и самый дешёвый ход из трёх.</dd></dl>
+      <dl class="row"><dt>Длина в пол</dt><dd>Прямой, ничем не прерванный подол до щиколотки. Закрыты колени и голени — там, где обычная парка отдаёт всё тепло. Лучшая зимняя длина из существующих, и заодно силуэт, который узнаётся в темноте за сто метров.</dd></dl>
+      <dl class="row"><dt>Запáх</dt><dd>Левая пола заходит на правую и держится скрытыми магнитами под поясом. Вместо центральной молнии — глухой двойной слой на груди. Самое холодное место закрыто дважды.</dd></dl>
+      <dl class="row"><dt>Воротник-труба</dt><dd>Стоячий воротник 220 мм, держащий форму сам. Поднят — закрывает лицо до глаз, боковой ветер не проходит. Отвёрнут — ложится на плечи валиком. Читается даже в превью на двести пикселей.</dd></dl>
+      <dl class="row"><dt>Разрезы</dt><dd>480 мм на молниях по бокам. Без них в вещи до пола нельзя ни широко шагнуть, ни сесть, ни сойти с бордюра. Открыты — свобода; закрыты — глухая колонна.</dd></dl>
     </div>
   </div>
 </section>
 
-<div class="g3">
-  <div class="slot"><i><b>КАДР 17</b>Воротник-труба · иней</i></div>
-  <div class="slot"><i><b>КАДР 03</b>Зубчатый подол снизу</i></div>
-  <div class="slot"><i><b>КАДР 18</b>Перегородки в контровом</i></div>
+<div class="g4">
+  <div class="slot"><img src="img/17-collar.jpg" alt="Воротник-труба, иней на ресницах" onerror="this.remove()"><i><b>КАДР 17</b>Воротник-труба · иней</i></div>
+  <div class="slot"><img src="img/03-hem.jpg" alt="Подол и боковой разрез" onerror="this.remove()"><i><b>КАДР 03</b>Подол и разрез</i></div>
+  <div class="slot"><img src="img/18-baffles.jpg" alt="Перегородки в контровом свете" onerror="this.remove()"><i><b>КАДР 18</b>Перегородки в контровом</i></div>
+  <div class="slot"><img src="img/16-zipper.jpg" alt="Молния с красным паракордом в рукавице" onerror="this.remove()"><i><b>КАДР 16</b>Молния в рукавице</i></div>
 </div>
 
 <!-- ИНЖЕНЕРИЯ -->
@@ -328,27 +368,29 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
     <h2>Скучные вещи,<br>которые решают всё</h2>
 
     <div class="specs">
-      <div><b>−40</b><span>Комфорт при движении. −25 в покое. Честно, с оговоркой на то, что все мёрзнут по-разному</span></div>
-      <div><b>1,5<em>кг</em></b><span>Размер M. Гибридный пакет: пух там, где сухо, синтетика там, где мокро</span></div>
+      <div><b>−40<em>°C</em></b><span>Комфорт при движении. −25 в покое. Честно, с оговоркой на то, что все мёрзнут по-разному</span></div>
+      <div><b>2,4<em>кг</em></b><span>Размер M. Вещь в пол честно весит. Гибридный пакет: пух там, где сухо, синтетика там, где мокро</span></div>
       <div><b>120<em>мм</em></b><span>Камеры перегородок. Стёжка не насквозь — значит, нет мостика холода по каждому шву</span></div>
-      <div><b>10<em>лет</em></b><span>Гарантия. На бирке прописью: пока не кончится метель</span></div>
+      <div><b>220<em>мм</em></b><span>Воротник-труба. Держит форму сам, поднят — закрывает лицо до глаз</span></div>
     </div>
 
     <div class="rows">
-      <dl class="row"><dt>Утеплитель</dt><dd>Пух 700 FP в корпусе. Синтетика в плечах, воротнике, рукавах и зубцах — там, где снег тает и ткань трётся. Мокрый пух греет на ноль. Кто говорит, что пух хорош везде, вам не куртку продаёт.</dd></dl>
+      <dl class="row"><dt>Утеплитель</dt><dd>Пух 700 FP в корпусе. Синтетика в плечах, воротнике, рукавах и по подолу — там, где снег тает и ткань трётся. Мокрый пух греет на ноль. Кто говорит, что пух хорош везде, вам не куртку продаёт.</dd></dl>
       <dl class="row"><dt>Стёжка</dt><dd>Перегородками, а не насквозь. Дороже в пошиве на два часа. Ровно этим настоящая зимняя вещь отличается от того, что висит в торговом центре.</dd></dl>
       <dl class="row"><dt>Верх</dt><dd>Глянцевый рипстоп 70D с мокрым блеском, мембрана 8000/5000, пропитка без ПФАС. Мембрана нужна не для −30, а для −2 с мокрым снегом. Таких дней в году больше.</dd></dl>
-      <dl class="row"><dt>Фурнитура</dt><dd>Молнии крупного тракта с паракордовыми темляками — берутся рукавицей. Центральная двухзамковая: расстёгивается снизу, когда сидишь. Планка на магнитах: кнопку в мороз рукавицей не застегнуть.</dd></dl>
-      <dl class="row"><dt>Кулиска</dt><dd>Выведена в боковые карманы. Затягиваешь подол, не расстёгивая куртку и не снимая рукавиц.</dd></dl>
-      <dl class="row"><dt>Ремонт</dt><dd>Всё заменяемое. В коробке ремкомплект. По внутреннему шву припуск 30 мм — вещь можно перешить. Номер изделия на бирке, история ремонтов привязана к номеру.</dd></dl>
+      <dl class="row"><dt>Фурнитура</dt><dd>Молнии крупного тракта с паракордовыми темляками — берутся рукавицей. Запах держится скрытыми магнитами: кнопку в мороз рукавицей не застегнуть, а магнит защёлкивается сам.</dd></dl>
+      <dl class="row"><dt>Кушак</dt><dd>Широкий стёганый пояс 140 мм поверх запаха. Держит полы, замыкает тепло на пояснице. Снимается — и вещь становится прямым коконом. Одна куртка, два силуэта.</dd></dl>
+      <dl class="row"><dt>Ремонт</dt><dd>Всё заменяемое: молнии, кнопки, фиксаторы. В коробке ремкомплект. По внутреннему шву припуск 30 мм — вещь можно перешить. Номер изделия на бирке, история ремонтов привязана к номеру.</dd></dl>
     </div>
   </div>
 </section>
 
 <div class="g2">
-  <div class="slot" style="min-height:min(66vh,580px)"><i><b>КАДР 09</b>Панелька · неон · метель</i></div>
-  <div class="slot" style="min-height:min(66vh,580px)"><i><b>КАДР 10</b>Промзона · пар и лёд</i></div>
+  <div class="slot" style="min-height:min(66vh,580px)"><img src="img/20-flatlay.jpg" alt="Пальто и ремкомплект" onerror="this.remove()"><i><b>КАДР 20</b>Флэтлей · ремкомплект</i></div>
+  <div class="slot" style="min-height:min(66vh,580px)"><img src="img/09-panelka.jpg" alt="Панелька в метели под неоном" onerror="this.remove()"><i><b>КАДР 09</b>Панелька · неон · метель</i></div>
+  <div class="slot" style="min-height:min(66vh,580px)"><img src="img/10-promzona.jpg" alt="Промзона, пар и лёд" onerror="this.remove()"><i><b>КАДР 10</b>Промзона · пар и лёд</i></div>
 </div>
+<div class="slot" style="min-height:min(70vh,620px);border-left:0;border-right:0"><img src="img/14-pole.jpg" alt="Поле, свет фар" onerror="this.remove()"><i><b>КАДР 14</b>Поле · фары · 16:9</i></div>
 
 <!-- ПОДКЛАДКА -->
 <section>
@@ -356,25 +398,25 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
     <div>
       <div class="kicker">Подкладка</div>
       <h2>Тихо снаружи.<br>Орёт внутри.</h2>
-      <p class="body">Мокрый чёрный на улице. Фирменный красный под ним и между зубцами. Слоган на спине подкладки — там, где его видишь только ты и только когда снимаешь.</p>
+      <p class="body">Мокрый чёрный на улице. Фирменный красный под ним, внутри воротника и в боковых разрезах. Слоган на спине подкладки — там, где его видишь только ты и только когда снимаешь.</p>
       <p class="body" style="margin-top:17px">Это не про то, чтобы кого-то задеть. Это про то, чтобы знать самому.</p>
       <div class="service" style="margin-top:42px">
-        <span>Партия 001 · 500 штук · отгрузка 15 ноября 2026 · гарантия десять лет с даты покупки · ремонт по номеру изделия</span>
+        <span>Партия 001 · 500 штук · отгрузка 15 ноября 2026 · ремонт по номеру изделия · припуск 30 мм по внутреннему шву</span>
         <span>Заявления по температуре и экранированию подтверждены протоколами испытаний · экранирование указано в децибелах, а не словом «блокирует»</span>
       </div>
     </div>
-    <div class="slot" style="min-height:min(70vh,560px)"><i><b>КАДР 19</b>Вывернутая · красная подкладка</i></div>
+    <div class="slot" style="min-height:min(70vh,560px)"><img src="img/19-lining.jpg" alt="Пальто с отвёрнутой полой, красная подкладка" onerror="this.remove()"><i><b>КАДР 19</b>Вывернутая · красная подкладка</i></div>
   </div>
 </section>
 
 <div class="g4">
-  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 13</b>Остановка · −35</i></div>
-  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 12</b>Заправка ночью</i></div>
-  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 11</b>Подземный переход</i></div>
-  <div class="slot" style="min-height:min(46vh,400px)"><i><b>КАДР 14</b>Поле · фары</i></div>
+  <div class="slot" style="min-height:min(46vh,400px)"><img src="img/13-ostanovka.jpg" alt="Остановка, минус тридцать пять" onerror="this.remove()"><i><b>КАДР 13</b>Остановка · −35</i></div>
+  <div class="slot" style="min-height:min(46vh,400px)"><img src="img/12-zapravka.jpg" alt="Пустая заправка ночью" onerror="this.remove()"><i><b>КАДР 12</b>Заправка ночью</i></div>
+  <div class="slot" style="min-height:min(46vh,400px)"><img src="img/11-perehod.jpg" alt="Подземный переход" onerror="this.remove()"><i><b>КАДР 11</b>Подземный переход</i></div>
+  <div class="slot" style="min-height:min(46vh,400px)"><img src="img/15-most.jpg" alt="Мост в синий час" onerror="this.remove()"><i><b>КАДР 15</b>Мост · синий час</i></div>
 </div>
 
-<svg class="teeth up" viewBox="0 0 1000 34" preserveAspectRatio="none"><rect width="1000" height="34" fill="url(#tooth)"/></svg>
+<div class="teeth up"></div>
 
 <!-- CTA -->
 <section class="cta" id="preorder">
@@ -388,9 +430,9 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
       <span class="was">36 900 ₽</span>
     </div>
 
-    <a class="buy" href="#">Забрать до зимы</a>
+    <a class="buy" href="#">Забрать до зимы <em>→</em></a>
 
-    <p class="terms">Дальше — розница 36 900 и ждёшь следующей зимы. Мы не будем допечатывать партию до весны: сколько ткани закупили, столько и сошьём.</p>
+    <p class="terms">Дальше — розница 36 900 и ждёшь следующей зимы. Партию до весны не допечатываем: сколько ткани закупили, столько и сошьём.</p>
 
     <div class="count">
       <div><b id="d">—</b><span>дней до 1 декабря</span></div>
@@ -409,7 +451,7 @@ footer p{font-size:12.5px;line-height:1.75;color:#4E4E57;max-width:58ch}
     </div>
     <div>
       <p>18+. Сайт содержит нецензурную лексику.</p>
-      <p style="margin-top:15px">POHUVIK™ · ПХВК™<br>Отгрузка партии 001 — 15 ноября 2026<br>Гарантия 10 лет с даты покупки</p>
+      <p style="margin-top:15px">POHUVIK™ · ПХВК™<br>Отгрузка партии 001 — 15 ноября 2026<br>Ремонт по номеру изделия</p>
       <p style="margin-top:15px;color:var(--acc)">И не такие метели в ебало летели.</p>
       <a class="by" href="#" style="margin-top:22px"><span>by</span><img src="sensesay-logo.svg" alt="sensesay"></a>
     </div>
@@ -460,13 +502,42 @@ function doFlash(){const b=document.getElementById('burst'),f=document.getElemen
 /* ОТСЧЁТ */
 (function(){const t=new Date(new Date().getFullYear(),11,1,0,0,0);
   if(t<new Date())t.setFullYear(t.getFullYear()+1);
+  const eD=document.getElementById('d'),eH=document.getElementById('h'),eM=document.getElementById('m');
   function tick(){const s=Math.max(0,(t-new Date())/1000);
-    d.textContent=Math.floor(s/86400);h.textContent=Math.floor(s%86400/3600);m.textContent=Math.floor(s%3600/60);}
+    eD.textContent=Math.floor(s/86400);eH.textContent=Math.floor(s%86400/3600);eM.textContent=Math.floor(s%3600/60);}
   tick();setInterval(tick,30000);})();
 
+/* МЕТЕЛЬ В МАНИФЕСТЕ — строки сносит вбок */
+(function(){
+  const lines=[...document.querySelectorAll('#manifest .ln')];
+  if(!lines.length) return;
+  let raf=null;
+  function drift(){
+    raf=null;
+    const vh=innerHeight;
+    for(const l of lines){
+      const r=l.getBoundingClientRect();
+      const p=1-(r.top+r.height/2)/vh;      /* -1 внизу … 1 вверху */
+      const d=parseFloat(l.dataset.d||-1);
+      l.style.transform='translateX('+(p*d*36).toFixed(1)+'px)';
+    }
+  }
+  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(drift)},{passive:true});
+  addEventListener('resize',drift);drift();
+})();
+
 /* ПОЯВЛЕНИЕ */
-const io=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add('in')),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  function showAll(){els.forEach(e=>e.classList.add('in'));}
+  if(!('IntersectionObserver' in window)){showAll();return;}
+  const io=new IntersectionObserver(e=>e.forEach(i=>{
+    if(i.isIntersecting){i.target.classList.add('in');io.unobserve(i.target);}
+  }),{threshold:0,rootMargin:'0px 0px -10% 0px'});
+  els.forEach(e=>io.observe(e));
+  /* страховка: что бы ни случилось, через 3 секунды показываем всё */
+  setTimeout(showAll,3000);
+})();
 </script>
 </body>
 </html>
