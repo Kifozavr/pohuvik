@@ -5,9 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ПОХУВИК — И не такие метели в ебало летели</title>
-<meta name="description" content="Пуховик в пол с карманом, где твой телефон замолкает. Предзаказ партии 001.">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Похувик в пол с карманом, где твой телефон замолкает. Предзаказ партии 001.">
 <meta property="og:title" content="ПОХУВИК — И не такие метели в ебало летели">
-<meta property="og:description" content="Пуховик в пол. Свёрнутый клапан на груди — красная полоса: тебя нет. Предзаказ партии 001.">
+<meta property="og:description" content="Похувик в пол. Свёрнутый клапан на груди — красная полоса: тебя нет. Предзаказ партии 001.">
 <meta property="og:image" content="img/01-hero.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -74,8 +75,8 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
 .herofoot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
 .herofoot p{max-width:400px;font-size:15px;line-height:1.55;color:#9D9DA5}
 
-/* прицел */
-.badge{width:78px;height:78px;flex:0 0 auto;opacity:.75}
+/* знак */
+.badge{height:64px;width:auto;flex:0 0 auto;opacity:.9;display:block}
 
 /* ---------- СЛОТЫ ---------- */
 .slot{position:relative;overflow:hidden;background:#050506;border:1px solid var(--line);
@@ -173,12 +174,29 @@ p.body{font-size:14.5px;line-height:1.6;color:#83838C;max-width:52ch}
 @media(max-width:860px){.specs{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.specs{grid-template-columns:1fr}}
 
-.rows{border-top:1px solid var(--line);margin-top:38px}
-.row{display:grid;grid-template-columns:170px 1fr;gap:26px;padding:17px 0;border-bottom:1px solid var(--line)}
-.row dt{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;color:#6E6E78}
-.row:hover dt{color:var(--acc)}
-.row dd{font-size:14.5px;line-height:1.55;color:#9095A0;max-width:74ch}
-@media(max-width:700px){.row{grid-template-columns:1fr;gap:7px}}
+/* раскрывающиеся строки */
+.rows{border-top:1px solid var(--line);margin-top:34px}
+.row{display:block;border-bottom:1px solid var(--line);cursor:pointer;
+  -webkit-tap-highlight-color:transparent}
+.row dt{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;
+  font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;
+  color:#7A7A85;transition:color .25s}
+.row:hover dt,.row.open dt{color:var(--paper)}
+.row dt::after{content:"";flex:0 0 9px;height:9px;position:relative;
+  background:
+    linear-gradient(#5E5E68,#5E5E68) center/9px 1px no-repeat,
+    linear-gradient(#5E5E68,#5E5E68) center/1px 9px no-repeat;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),background .25s}
+.row:hover dt::after{background:
+    linear-gradient(var(--acc),var(--acc)) center/9px 1px no-repeat,
+    linear-gradient(var(--acc),var(--acc)) center/1px 9px no-repeat}
+.row.open dt::after{transform:rotate(45deg);background:
+    linear-gradient(var(--acc),var(--acc)) center/9px 1px no-repeat,
+    linear-gradient(var(--acc),var(--acc)) center/1px 9px no-repeat}
+.row dd{max-height:0;overflow:hidden;opacity:0;
+  font-size:14.5px;line-height:1.6;color:#8E939E;max-width:66ch;
+  transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .35s,padding .4s}
+.row.open dd{max-height:420px;opacity:1;padding:0 0 20px}
 
 /* ---------- CTA · тихо снаружи ---------- */
 .cta{background:#000;border-top:1px solid var(--line)}
@@ -222,7 +240,7 @@ html.js .reveal.in{opacity:1;transform:none}
 <!-- HERO -->
 <header class="hero">
   <div class="wrap topbar">
-    <span class="mark striped">ПОХУВИК</span>
+    <span class="mark">ПОХУВИК</span>
     <span class="season">Зима 26/27 · Партия 001</span>
     <a class="by" href="#"><span>by</span><img src="sensesay-logo.svg" alt="sensesay"></a>
   </div>
@@ -231,17 +249,14 @@ html.js .reveal.in{opacity:1;transform:none}
     <h1 class="slogan">
       <span>И не такие</span>
       <span>метели</span>
-      <span class="hit">в ебало</span>
-      <span>летели.</span>
+      <span>в ебало</span>
+      <span>летели</span>
     </h1>
   </div>
 
   <div class="wrap herofoot">
-    <p>Пуховик в пол. С карманом, в котором телефон замолкает — не потому что его отключили, а потому что ты так решил.</p>
-    <svg class="badge" viewBox="0 0 78 78" fill="none" stroke="#6E6E76" stroke-width="1">
-      <circle cx="39" cy="39" r="28"/><path d="M39 4v70M4 39h70"/>
-      <rect x="33" y="33" width="12" height="12" stroke="#FA283C"/>
-    </svg>
+    <p>Похувик в пол. С карманом, в котором телефон замолкает — не потому что его отключили, а потому что ты так решил.</p>
+    <img class="badge" src="sign.svg" alt="">
   </div>
 </header>
 
@@ -252,26 +267,27 @@ html.js .reveal.in{opacity:1;transform:none}
   <div class="wrap reveal">
     <div class="kicker">Манифест</div>
     <div class="manifest" id="manifest">
-      <span class="ln" data-n="01" data-d="-1.0">Всё дорожает.</span>
-      <span class="ln" data-n="02" data-d="-1.6">Интернет отключают.</span>
-      <span class="ln" data-n="03" data-d="-2.3">Бензина нет.</span>
-      <span class="ln" data-n="04" data-d="-1.4">Курс скачет.</span>
-      <span class="ln" data-n="05" data-d="-2.8">Небо серое с октября по май.</span>
+      <span class="ln on" data-n="01" data-d="-0.6">Зима близко.</span>
+      <span class="ln" data-n="02" data-d="-1.9">Зима во всех смыслах.</span>
+      <span class="ln" data-n="03" data-d="-2.6">Каждый год.</span>
+      <span class="ln" data-n="04" data-d="-1.5">Лето дальше, а небо ниже.</span>
+      <span class="ln" data-n="05" data-d="-3.0">И ты к нему ближе.</span>
       <span class="sp"></span>
-      <span class="ln on" data-n="06" data-d="-0.5">Мы не будем это комментировать.</span>
+      <span class="ln" data-n="06" data-d="-2.2">Вот бы выждать.</span>
+      <span class="ln" data-n="07" data-d="-1.3">Не ныть, не бояться.</span>
+      <span class="ln" data-n="08" data-d="-2.4">Идти, делать, ждать, беречь близких.</span>
       <span class="sp"></span>
-      <span class="ln acc" data-n="07" data-d="-0.2">Мы сшили куртку.</span>
+      <span class="ln" data-n="09" data-d="-1.7">Отстраниться, укутаться.</span>
+      <span class="ln acc" data-n="10" data-d="-0.2">В похувик, который мы сшили.</span>
+      <span class="ln on" data-n="11" data-d="-0.5">Он тёплый. Прочный.</span>
+      <span class="ln on" data-n="12" data-d="-0.7">Он защищает от шума.</span>
       <span class="sp"></span>
-      <span class="ln" data-n="08" data-d="-1.8">Она тёплая.</span>
-      <span class="ln" data-n="09" data-d="-2.4">Она не рвётся.</span>
-      <span class="ln" data-n="10" data-d="-1.5">Её чинят, а не выкидывают.</span>
-      <span class="ln" data-n="11" data-d="-2.1">Это всё, что мы можем сделать.</span>
+      <span class="ln on" data-n="13" data-d="-0.3">Делает безразличие заметным.</span>
       <span class="sp"></span>
-      <span class="ln on" data-n="12" data-d="-0.4">Этого достаточно.</span>
-      <span class="sp"></span>
-      <span class="ln" data-n="13" data-d="-2.6">Метель будет.</span>
-      <span class="ln" data-n="14" data-d="-3.2">Метель всегда будет.</span>
-      <span class="ln on" data-n="15" data-d="-0.7">Вопрос только в том, в чём ты в ней стоишь.</span>
+      <span class="ln" data-n="14" data-d="-1.1">Ставит крик внутри на авиарежим.</span>
+      <span class="ln" data-n="15" data-d="-1.4">Защищает нервы ночь за днём.</span>
+      <span class="ln" data-n="16" data-d="-3.4">Метель всегда будет.</span>
+      <span class="ln on" data-n="17" data-d="-0.4">Ты в ней либо сам, либо в нём</span>
     </div>
   </div>
 </section>
@@ -328,7 +344,7 @@ html.js .reveal.in{opacity:1;transform:none}
 
     <div class="flashbox" id="flashbox">
       <div class="burst" id="burst"></div>
-      <div class="backtext">И не такие<br>метели<br>в ебало<br>летели.</div>
+      <div class="backtext">И не такие<br>метели<br>в ебало<br>летели</div>
     </div>
     <button class="flashbtn" onclick="doFlash()">Включить вспышку</button>
   </div>
@@ -344,7 +360,7 @@ html.js .reveal.in{opacity:1;transform:none}
   <div class="wrap reveal">
     <div class="kicker">Силуэт</div>
     <h2>Колонна</h2>
-    <p class="lead" style="margin-bottom:44px">Пуховик длиной в пол с японским контуром. Не косплей и не этника — приёмы взяты за то, что они работают.</p>
+    <p class="lead" style="margin-bottom:44px">Похувик длиной в пол с японским контуром. Не косплей и не этника — приёмы взяты за то, что они работают.</p>
     <div class="rows" style="margin-top:0">
       <dl class="row"><dt>Длина в пол</dt><dd>Прямой, ничем не прерванный подол до щиколотки. Закрыты колени и голени — там, где обычная парка отдаёт всё тепло. Лучшая зимняя длина из существующих, и заодно силуэт, который узнаётся в темноте за сто метров.</dd></dl>
       <dl class="row"><dt>Запáх</dt><dd>Левая пола заходит на правую и держится скрытыми магнитами под поясом. Вместо центральной молнии — глухой двойной слой на груди. Самое холодное место закрыто дважды.</dd></dl>
@@ -452,7 +468,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <div>
       <p>18+. Сайт содержит нецензурную лексику.</p>
       <p style="margin-top:15px">POHUVIK™ · ПХВК™<br>Отгрузка партии 001 — 15 ноября 2026<br>Ремонт по номеру изделия</p>
-      <p style="margin-top:15px;color:var(--acc)">И не такие метели в ебало летели.</p>
+      <p style="margin-top:15px;color:var(--acc)">И не такие метели в ебало летели</p>
       <a class="by" href="#" style="margin-top:22px"><span>by</span><img src="sensesay-logo.svg" alt="sensesay"></a>
     </div>
   </div>
@@ -506,6 +522,15 @@ function doFlash(){const b=document.getElementById('burst'),f=document.getElemen
   function tick(){const s=Math.max(0,(t-new Date())/1000);
     eD.textContent=Math.floor(s/86400);eH.textContent=Math.floor(s%86400/3600);eM.textContent=Math.floor(s%3600/60);}
   tick();setInterval(tick,30000);})();
+
+/* РАСКРЫВАЮЩИЕСЯ СТРОКИ */
+document.querySelectorAll('.row').forEach(r=>{
+  r.setAttribute('tabindex','0');
+  r.setAttribute('role','button');
+  const t=()=>r.classList.toggle('open');
+  r.addEventListener('click',t);
+  r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+});
 
 /* МЕТЕЛЬ В МАНИФЕСТЕ — строки сносит вбок */
 (function(){
