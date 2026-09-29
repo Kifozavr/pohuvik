@@ -42,7 +42,7 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
 .striped.acc{background-image:repeating-linear-gradient(90deg,var(--acc) 0 3px,rgba(0,0,0,0) 3px 7px)}
 
 /* красная нить — единственный крик снаружи */
-.teeth{display:block;width:100%;height:3px;background:var(--acc)}
+.teeth{display:block;position:relative;z-index:2;width:100%;height:3px;background:var(--acc)}
 .teeth.up{background:var(--acc)}
 
 /* служебный блок */
@@ -58,7 +58,33 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
 #gate button:hover{background:#fff}
 
 /* ---------- HERO ---------- */
-#snow{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4}
+#snow{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4}
+
+/* ---------- РОЛИК ПЕРВОГО ЭКРАНА ---------- */
+#heroFilm{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
+#heroFilm.on{opacity:1}
+#heroFilm video{width:100%;height:100%;object-fit:cover;display:block}
+#heroFilm::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.66) 0%,rgba(0,0,0,.28) 34%,rgba(0,0,0,.34) 66%,rgba(0,0,0,.78) 100%)}
+
+/* слоган растворяется за 20 секунд — остаётся ролик */
+.hero .slogan,.hero .herofoot p{transition:opacity 20s linear}
+.hero.faded .slogan,.hero.faded .herofoot p{opacity:0}
+
+/* звук */
+#sound{position:fixed;left:24px;bottom:24px;z-index:9;display:none;align-items:center;gap:9px;
+  padding:9px 17px 9px 13px;border:1px solid rgba(255,255,255,.32);border-radius:999px;
+  font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:10px;
+  color:var(--paper);background:rgba(0,0,0,.45);backdrop-filter:blur(8px);cursor:pointer;transition:.25s}
+#sound.show{display:inline-flex}
+#sound:hover{border-color:#fff;background:rgba(0,0,0,.75)}
+#sound .eq{display:flex;align-items:flex-end;gap:2px;height:11px}
+#sound .eq i{width:2px;height:3px;background:currentColor;display:block}
+#sound.live .eq i{animation:eq .75s ease-in-out infinite alternate}
+#sound.live .eq i:nth-child(2){animation-delay:.2s}
+#sound.live .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{to{height:11px}}
+@media(max-width:700px){#sound{left:14px;bottom:16px}}
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:26px 0 34px;z-index:2}
 .topbar{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display);text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--grey)}
 .mark{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:.06em;line-height:1}
@@ -101,7 +127,7 @@ h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size
 p.body{font-size:14.5px;line-height:1.6;color:#83838C;max-width:52ch}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,76px);align-items:center}
 @media(max-width:860px){.grid2{grid-template-columns:1fr}}
-.g2,.g3,.g4{display:grid}
+.g2,.g3,.g4{display:grid;position:relative;z-index:2;background:#000}
 .g2{grid-template-columns:1fr 1fr}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
@@ -231,8 +257,17 @@ html.js .reveal.in{opacity:1;transform:none}
 <div id="gate">
   <h4>Здесь ругаются матом</h4>
   <p>Сайт содержит нецензурную лексику и предназначен для лиц старше 18 лет. Если вас это смущает — здесь вам будет неуютно.</p>
-  <button onclick="document.getElementById('gate').remove()">Мне есть 18</button>
+  <button onclick="enterSite()">Мне есть 18</button>
 </div>
+
+<!-- ролик первого экрана: под метелью и слоганом -->
+<div id="heroFilm">
+  <video id="filmEl" src="POHUVIK_hero.mp4" poster="img/hero-poster.jpg"
+         autoplay muted loop playsinline preload="auto"></video>
+</div>
+<button id="sound" type="button" aria-pressed="false" aria-label="Включить звук">
+  <span class="eq"><i></i><i></i><i></i></span><span id="soundLbl">Звук</span>
+</button>
 
 <canvas id="snow"></canvas>
 <div class="grain"></div>
@@ -522,6 +557,75 @@ function doFlash(){const b=document.getElementById('burst'),f=document.getElemen
   function tick(){const s=Math.max(0,(t-new Date())/1000);
     eD.textContent=Math.floor(s/86400);eH.textContent=Math.floor(s%86400/3600);eM.textContent=Math.floor(s%3600/60);}
   tick();setInterval(tick,30000);})();
+
+/* ---------- РОЛИК ПЕРВОГО ЭКРАНА ---------- */
+const film    = document.getElementById('heroFilm');
+const filmEl  = document.getElementById('filmEl');
+const heroEl  = document.querySelector('.hero');
+const soundBtn= document.getElementById('sound');
+const soundLbl= document.getElementById('soundLbl');
+let dissolved = false;
+
+/* автоплей разрешён только без звука — так во всех браузерах */
+filmEl.muted = true;
+filmEl.play().catch(()=>{});
+
+function startFilm(){
+  film.classList.add('on');
+  soundBtn.classList.add('show');
+  filmEl.play().catch(()=>{});
+  if(!dissolved){
+    dissolved = true;
+    /* два кадра, чтобы транзишн на 20 с гарантированно взялся */
+    requestAnimationFrame(()=>requestAnimationFrame(()=>heroEl.classList.add('faded')));
+  }
+}
+
+/* запускаем после возрастного гейта */
+function enterSite(){
+  const g = document.getElementById('gate');
+  if(g) g.remove();
+  startFilm();
+}
+/* если гейта нет (уже убран) — стартуем сами */
+if(!document.getElementById('gate')) startFilm();
+
+/* звук по кнопке, с плавным подъёмом громкости */
+let fadeTimer = null;
+function toggleSound(forceOff){
+  const off = forceOff === true ? true : !filmEl.muted;
+  clearInterval(fadeTimer);
+  if(off){
+    filmEl.muted = true;
+    soundLbl.textContent = 'Звук';
+    soundBtn.setAttribute('aria-label','Включить звук');
+  }else{
+    filmEl.muted = false;
+    filmEl.volume = 0;
+    filmEl.play().catch(()=>{});
+    let v = 0;
+    fadeTimer = setInterval(()=>{ v = Math.min(1, v + .05); filmEl.volume = v; if(v >= 1) clearInterval(fadeTimer); }, 40);
+    soundLbl.textContent = 'Тишина';
+    soundBtn.setAttribute('aria-label','Выключить звук');
+  }
+  soundBtn.classList.toggle('live', !off);
+  soundBtn.setAttribute('aria-pressed', String(!off));
+}
+soundBtn.addEventListener('click', ()=>toggleSound());
+
+/* за пределами первого экрана ролик останавливаем: не жрём батарею */
+(function(){
+  let playing = true;
+  const io = new IntersectionObserver(es=>{
+    const vis = es[0].isIntersecting;
+    if(vis === playing) return;
+    playing = vis;
+    film.classList.toggle('on', vis);
+    if(vis){ filmEl.play().catch(()=>{}); soundBtn.classList.add('show'); }
+    else   { filmEl.pause(); soundBtn.classList.remove('show'); if(!filmEl.muted) toggleSound(true); }
+  },{threshold:0});
+  io.observe(heroEl);
+})();
 
 /* РАСКРЫВАЮЩИЕСЯ СТРОКИ */
 document.querySelectorAll('.row').forEach(r=>{
