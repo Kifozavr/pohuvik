@@ -51,11 +51,29 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
   letter-spacing:.02em;color:#55555E}
 
 /* ---------- AGE GATE ---------- */
-#gate{position:fixed;inset:0;background:#000;z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;padding:24px;text-align:center}
+#gate{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:999;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:26px;padding:24px;text-align:center;opacity:1;transition:opacity .7s ease}
+#gate.out{opacity:0;pointer-events:none}
 #gate h4{font-family:var(--display);font-size:clamp(26px,6vw,54px);font-weight:700;text-transform:uppercase;line-height:1}
 #gate p{color:var(--grey);font-size:13.5px;max-width:400px;line-height:1.6}
 #gate button{background:var(--acc);color:#000;border:0;padding:17px 42px;font-family:var(--display);font-size:19px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
 #gate button:hover{background:#fff}
+.gate-ask{display:flex;flex-direction:column;align-items:center;gap:26px}
+body.locked{overflow:hidden}
+
+/* ---------- ПРЕЛОАДЕР ---------- */
+.gate-load{display:none;width:min(560px,86vw)}
+#gate.loading .gate-ask{display:none}
+#gate.loading .gate-load{display:block}
+.pl-num{font-family:var(--display);font-weight:700;line-height:.86;letter-spacing:-.04em;
+  font-size:clamp(76px,17vw,180px);color:var(--paper);display:flex;align-items:flex-start;justify-content:center}
+.pl-num i{font-style:normal;font-size:.22em;color:var(--acc);margin-top:.5em;margin-left:.12em;letter-spacing:0}
+.pl-cap{font-family:var(--display);text-transform:uppercase;letter-spacing:.3em;font-size:11px;
+  color:#5E5E68;margin:18px 0 22px;min-height:1.2em;transition:opacity .25s}
+.pl-cap.swap{opacity:0}
+.pl-bar{height:2px;width:100%;background:#1A1A1E;overflow:hidden}
+.pl-bar span{display:block;height:100%;width:0;background:var(--acc);
+  transition:width .35s cubic-bezier(.4,0,.2,1)}
 
 /* ---------- HERO ---------- */
 #snow{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4}
@@ -67,16 +85,17 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
 #heroFilm::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,.66) 0%,rgba(0,0,0,.28) 34%,rgba(0,0,0,.34) 66%,rgba(0,0,0,.78) 100%)}
 
-/* слоган растворяется за 20 секунд — остаётся ролик */
-.hero .slogan,.hero .herofoot p{transition:opacity 20s linear}
-.hero.faded .slogan,.hero.faded .herofoot p{opacity:0}
+/* буквы первого экрана — частицы, их треплет и уносит ветром */
+.ch{display:inline-block;will-change:transform,opacity;backface-visibility:hidden}
+img.ch{display:block}
+.wd{display:inline-block;white-space:nowrap}   /* перенос только по словам */
 
 /* звук */
 #sound{position:fixed;left:24px;bottom:24px;z-index:9;display:none;align-items:center;gap:9px;
   padding:9px 17px 9px 13px;border:1px solid rgba(255,255,255,.32);border-radius:999px;
   font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:10px;
   color:var(--paper);background:rgba(0,0,0,.45);backdrop-filter:blur(8px);cursor:pointer;transition:.25s}
-#sound.show{display:inline-flex}
+body.entered #sound{display:inline-flex}   /* сквозная: звук на любом экране */
 #sound:hover{border-color:#fff;background:rgba(0,0,0,.75)}
 #sound .eq{display:flex;align-items:flex-end;gap:2px;height:11px}
 #sound .eq i{width:2px;height:3px;background:currentColor;display:block}
@@ -96,7 +115,7 @@ body{background:var(--void);color:var(--paper);font-family:var(--body);overflow-
 
 .slogan{font-family:var(--display);font-weight:700;text-transform:uppercase;
   font-size:clamp(44px,11.4vw,178px);line-height:.86;letter-spacing:-.028em;margin:4vh 0}
-.slogan span{display:block;white-space:nowrap}
+.slogan>span{display:block;white-space:nowrap}
 .slogan .hit{color:var(--acc)}
 .herofoot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
 .herofoot p{max-width:400px;font-size:15px;line-height:1.55;color:#9D9DA5}
@@ -255,9 +274,17 @@ html.js .reveal.in{opacity:1;transform:none}
 <body>
 
 <div id="gate">
-  <h4>Здесь ругаются матом</h4>
-  <p>Сайт содержит нецензурную лексику и предназначен для лиц старше 18 лет. Если вас это смущает — здесь вам будет неуютно.</p>
-  <button onclick="enterSite()">Мне есть 18</button>
+  <div class="gate-ask">
+    <h4>Здесь ругаются матом</h4>
+    <p>Сайт содержит нецензурную лексику и предназначен для лиц старше 18 лет. Если вас это смущает — здесь вам будет неуютно.</p>
+    <button onclick="enterSite()">Мне есть 18</button>
+  </div>
+
+  <div class="gate-load" aria-live="polite">
+    <div class="pl-num"><span id="plNum">0</span><i>%</i></div>
+    <div class="pl-cap" id="plCap">Заряжаем метель</div>
+    <div class="pl-bar"><span id="plBar"></span></div>
+  </div>
 </div>
 
 <!-- ролик первого экрана: под метелью и слоганом -->
@@ -510,24 +537,168 @@ html.js .reveal.in{opacity:1;transform:none}
 </footer>
 
 <script>
-/* СНЕГ */
-(function(){
-  const c=document.getElementById('snow'),x=c.getContext('2d');let w,h,f=[];
-  function size(){w=c.width=innerWidth;h=c.height=innerHeight;}
-  size();addEventListener('resize',size);
-  for(let i=0;i<200;i++)f.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,s:Math.random()*3+2});
-  (function loop(){
+/* ============================================================
+   БУРАН — один цикл на снег и на буквы
+   Сильный с первого кадра, за 20 с разгоняется,
+   по скроллу вниз стихает.
+   ============================================================ */
+const STORM = (function(){
+  const c = document.getElementById('snow'), x = c.getContext('2d');
+  let w, h, flakes = [], calm = 0, wind = 1;
+  const N = matchMedia('(max-width:700px)').matches ? 260 : 480;
+
+  function size(){ w = c.width = innerWidth; h = c.height = innerHeight; }
+  size(); addEventListener('resize', size, {passive:true});
+
+  for(let i=0;i<N;i++) flakes.push({
+    x: Math.random()*w, y: Math.random()*h,
+    r: Math.random()*2.2 + .35,
+    s: Math.random()*3 + 1.2,
+    d: Math.random()*Math.PI*2
+  });
+
+  /* порывы: ветер не ровный, он рвёт */
+  function gust(t){
+    return 1 + .50*Math.sin(t*0.00110)
+             + .32*Math.sin(t*0.00370 + 1.7)
+             + .20*Math.sin(t*0.00910 + 0.4);
+  }
+
+  addEventListener('scroll', ()=>{
+    calm = Math.min(1, scrollY / (innerHeight*1.8));
+  }, {passive:true});
+
+  const subs = [];
+  const t0 = performance.now();
+
+  (function loop(now){
+    const t = now - t0;
+    const ramp = 1 + 2.1*Math.min(1, t/20000);      /* за 20 с втрое сильнее */
+    wind = ramp * gust(t) * (1 - .85*calm);         /* по скроллу стихает    */
+
     x.clearRect(0,0,w,h);
-    for(const p of f){
-      x.fillStyle= p.r>1.7 ? '#4DE0FF' : '#fff';
-      x.globalAlpha=.1+p.r/4;
-      x.fillRect(p.x,p.y,p.r*3.4,p.r*.7);
-      p.x-=p.s*2.6;p.y+=p.s*.4;
-      if(p.x<-20){p.x=w+20;p.y=Math.random()*h;}
-      if(p.y>h){p.y=-10;p.x=Math.random()*w;}
+    const sx = 2.3*wind, sy = .42*wind;
+    for(const p of flakes){
+      p.d += .022;
+      p.x -= p.s*sx;
+      p.y += p.s*sy + Math.sin(p.d)*.45*wind;
+      const len = 3 + p.r*3.2*Math.min(3.2, wind);  /* на ветру снег вытягивается */
+      x.globalAlpha = Math.min(.9, (.10 + p.r/4) * (1 - .5*calm));
+      x.fillStyle = p.r > 1.9 ? '#4DE0FF' : '#fff';
+      x.fillRect(p.x, p.y, len, p.r*.7);
+      if(p.x < -60){ p.x = w + 20 + Math.random()*140; p.y = Math.random()*h; }
+      if(p.y > h+10){ p.y = -10; p.x = Math.random()*w; }
     }
+    for(const fn of subs) fn(t, wind, calm);
     requestAnimationFrame(loop);
-  })();
+  })(performance.now());
+
+  return { onFrame: fn => subs.push(fn), get wind(){ return wind } };
+})();
+
+/* ---------- БУКВЫ НА ВЕТРУ ---------- */
+const LETTERS = (function(){
+  const hero = document.querySelector('.hero');
+  if(!hero) return { arm(){} };
+
+  /* Режем на слова, слова — на буквы.
+     Слово остаётся неразрывным, иначе строка будет переноситься по буквам.
+     Блок «by sensesay» не трогаем: он флексовый, улетит целиком. */
+  const walker = document.createTreeWalker(hero, NodeFilter.SHOW_TEXT, {
+    acceptNode(n){
+      if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      if(n.parentElement.closest('.by')) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const nodes = []; let n;
+  while(n = walker.nextNode()) nodes.push(n);
+
+  for(const node of nodes){
+    const frag = document.createDocumentFragment();
+    const words = node.nodeValue.split(/(\s+)/);
+    for(const word of words){
+      if(!word) continue;
+      if(/^\s+$/.test(word)){ frag.appendChild(document.createTextNode(' ')); continue; }
+      const wd = document.createElement('span');
+      wd.className = 'wd';
+      for(const ch of word){
+        const s = document.createElement('span');
+        s.className = 'ch'; s.textContent = ch;
+        wd.appendChild(s);
+      }
+      frag.appendChild(wd);
+    }
+    node.parentNode.replaceChild(frag, node);
+  }
+
+  const badge = hero.querySelector('.badge');   if(badge) badge.classList.add('ch');
+  const by    = hero.querySelector('.by');      if(by)    by.classList.add('ch');
+
+  const els = [...hero.querySelectorAll('.ch')];
+  const P = els.map(el => ({
+    el,
+    x0: 0, k: .6 + Math.random()*.9,          /* податливость: лёгкие треплет сильнее */
+    ph: Math.random()*Math.PI*2,
+    f1: .7 + Math.random()*.8, f2: .5 + Math.random()*1.1,
+    dx:0, dy:0, rot:0, vx:0, vy:0, vr:0,
+    gone:false, blown:false, blowAt: Infinity
+  }));
+
+  function measure(){ P.forEach(p => p.x0 = p.el.getBoundingClientRect().left); }
+  addEventListener('resize', measure, {passive:true});
+
+  let armed = false, tArm = 0;
+
+  function arm(){
+    if(armed) return;
+    armed = true;
+    measure();
+    /* очередь на снос: случайный порядок, но лавинообразно к концу */
+    const order = P.map((_,i)=>i);
+    for(let i=order.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; [order[i],order[j]]=[order[j],order[i]]; }
+    const START = 4500, END = 19500;
+    order.forEach((idx,i)=>{
+      const u = i/(order.length-1 || 1);
+      P[idx].blowAt = START + Math.pow(u, 1.8)*(END-START);
+    });
+    tArm = performance.now();
+  }
+
+  STORM.onFrame((t, wind)=>{
+    const now = performance.now();
+    const age = armed ? now - tArm : 0;
+
+    for(const p of P){
+      if(p.gone) continue;
+
+      if(!p.blown && armed && age >= p.blowAt){
+        p.blown = true;
+        p.vx = -(5 + wind*3.5 + Math.random()*7);
+        p.vy = (Math.random()-.62)*4;
+        p.vr = (Math.random()-.5)*26;
+      }
+
+      if(p.blown){
+        p.vx -= .30 + wind*.22;                 /* разгоняется, а не летит ровно */
+        p.vy += (Math.random()-.42)*.55;
+        p.dx += p.vx; p.dy += p.vy; p.rot += p.vr;
+        p.el.style.transform = `translate3d(${p.dx.toFixed(1)}px,${p.dy.toFixed(1)}px,0) rotate(${p.rot.toFixed(1)}deg)`;
+        if(p.x0 + p.dx < -140 || p.dy > innerHeight + 140){
+          p.gone = true; p.el.style.opacity = 0; p.el.style.transform = 'none';
+        }
+      }else{
+        /* дрожь: заметная сразу, растёт вместе с ветром */
+        const a = Math.min(7, .85*wind*p.k);
+        const ox = Math.sin(t*.013*p.f1 + p.ph)*a + Math.sin(t*.031*p.f2 + p.ph)*a*.45;
+        const oy = Math.cos(t*.011*p.f2 + p.ph)*a*.55;
+        const rr = Math.sin(t*.009*p.f1 + p.ph)*a*.8;
+        p.el.style.transform = `translate3d(${ox.toFixed(2)}px,${oy.toFixed(2)}px,0) rotate(${rr.toFixed(2)}deg)`;
+      }
+    }
+  });
+
+  return { arm };
 })();
 
 /* УВЕДОМЛЕНИЯ */
@@ -570,25 +741,94 @@ let dissolved = false;
 filmEl.muted = true;
 filmEl.play().catch(()=>{});
 
+let heroVisible = true;
+
 function startFilm(){
+  document.body.classList.add('entered');
   film.classList.add('on');
-  soundBtn.classList.add('show');
   filmEl.play().catch(()=>{});
   if(!dissolved){
     dissolved = true;
-    /* два кадра, чтобы транзишн на 20 с гарантированно взялся */
-    requestAnimationFrame(()=>requestAnimationFrame(()=>heroEl.classList.add('faded')));
+    LETTERS.arm();          /* с этой секунды пошёл отсчёт сноса букв */
   }
 }
 
-/* запускаем после возрастного гейта */
+/* ---------- ПРЕЛОАДЕР ----------
+   После «мне есть 18» держим чёрный экран, пока ролик не набьёт буфер.
+   Хиро открывается уже с идущим видео, а не с пустотой.                */
+const CAPS = ['Заряжаем метель','Греем пух','Сворачиваем клапан',
+              'Ставим крик на авиарежим','Уже почти похуй'];
+const READY_SEC = 6;      /* столько секунд буфера считаем достаточным */
+const MIN_MS    = 1100;   /* минимум показа, чтобы не мигало */
+const MAX_MS    = 9000;   /* потолок: на плохой связи не держим вечно */
+
 function enterSite(){
-  const g = document.getElementById('gate');
-  if(g) g.remove();
-  startFilm();
+  const gate = document.getElementById('gate');
+  const num  = document.getElementById('plNum');
+  const bar  = document.getElementById('plBar');
+  const cap  = document.getElementById('plCap');
+  if(!gate) { startFilm(); return; }
+
+  gate.classList.add('loading');
+  const t0 = performance.now();
+  let shown = 0, done = false;
+
+  const capTimer = setInterval(()=>{
+    cap.classList.add('swap');
+    setTimeout(()=>{
+      cap.textContent = CAPS[(CAPS.indexOf(cap.textContent)+1) % CAPS.length] || CAPS[0];
+      cap.classList.remove('swap');
+    },260);
+  },1400);
+
+  function buffered(){
+    try{
+      if(!filmEl.buffered.length) return 0;
+      return filmEl.buffered.end(filmEl.buffered.length-1) - (filmEl.currentTime||0);
+    }catch(e){ return 0; }
+  }
+
+  function tick(){
+    if(done) return;
+    const age    = performance.now() - t0;
+    const forced = age > MAX_MS;                 /* связь плохая — не держим человека */
+    const real   = Math.min(1, buffered()/READY_SEC);
+    const time   = Math.min(1, age/MIN_MS);
+    /* показываем меньшее из двух: прогресс честный, но не быстрее минимума */
+    const p = forced ? 100 : Math.max(shown, Math.floor(Math.min(real, time)*100));
+    shown = p;
+    num.textContent = p;
+    bar.style.width = p + '%';
+
+    if(p >= 100 && (forced || filmEl.readyState >= 3)) finish();
+    else requestAnimationFrame(tick);
+  }
+
+  function finish(){
+    if(done) return;
+    done = true;
+    clearInterval(capTimer);
+    num.textContent = 100; bar.style.width = '100%';
+    cap.textContent = 'Похуй';
+    /* сначала запускаем видео, и только потом снимаем занавес */
+    filmEl.currentTime = 0;
+    const go = ()=>{
+      film.classList.add('on');
+      gate.classList.add('out');
+      document.body.classList.remove('locked');
+      setTimeout(()=>{ gate.remove(); startFilm(); }, 700);
+    };
+    const p = filmEl.play();
+    if(p && p.then) p.then(()=>setTimeout(go,120)).catch(go);
+    else setTimeout(go,120);
+  }
+
+  requestAnimationFrame(tick);
 }
-/* если гейта нет (уже убран) — стартуем сами */
-if(!document.getElementById('gate')) startFilm();
+
+/* пока гейт на экране — страница не скроллится */
+if(document.getElementById('gate')) document.body.classList.add('locked');
+else startFilm();
 
 /* звук по кнопке, с плавным подъёмом громкости */
 let fadeTimer = null;
@@ -599,6 +839,7 @@ function toggleSound(forceOff){
     filmEl.muted = true;
     soundLbl.textContent = 'Звук';
     soundBtn.setAttribute('aria-label','Включить звук');
+    if(!heroVisible) filmEl.pause();     /* внизу страницы без звука крутить незачем */
   }else{
     filmEl.muted = false;
     filmEl.volume = 0;
@@ -613,16 +854,16 @@ function toggleSound(forceOff){
 }
 soundBtn.addEventListener('click', ()=>toggleSound());
 
-/* за пределами первого экрана ролик останавливаем: не жрём батарею */
+/* Ролик гаснет за пределами первого экрана, но если звук включён —
+   продолжает играть: это саундтрек всего сайта.                     */
 (function(){
-  let playing = true;
   const io = new IntersectionObserver(es=>{
     const vis = es[0].isIntersecting;
-    if(vis === playing) return;
-    playing = vis;
+    if(vis === heroVisible) return;
+    heroVisible = vis;
     film.classList.toggle('on', vis);
-    if(vis){ filmEl.play().catch(()=>{}); soundBtn.classList.add('show'); }
-    else   { filmEl.pause(); soundBtn.classList.remove('show'); if(!filmEl.muted) toggleSound(true); }
+    if(vis) filmEl.play().catch(()=>{});
+    else if(filmEl.muted) filmEl.pause();
   },{threshold:0});
   io.observe(heroEl);
 })();
